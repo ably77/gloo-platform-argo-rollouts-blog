@@ -13,7 +13,7 @@ At Solo.io, we've integrated Argo Rollouts' traffic management capabilities with
   - This guide assumes that istiod is deployed in `istio-system` and the ingressgateway is deployed in `istio-gateways`
 - VirtualGateway configured with the name `north-south-gw` in the `istio-gateways` namespace
 
-# Gloo Platform Workspace Setup
+## Gloo Platform Workspace Setup
 Let's set up a simple catchall workspace for our rollouts demo
 ```
 kubectl apply -f- <<EOF
@@ -140,7 +140,7 @@ time="2023-10-31T17:41:11Z" level=info msg="Starting istio workers"
 time="2023-10-31T17:41:11Z" level=info msg="Istio workers (10) started"
 ```
 
-## Canary Rollout Strategy
+## Review Canary Rollout Strategy
 A Canary rollout is a deployment strategy where the operator releases a new version of their application to a small percentage of the production traffic. We can use weights, pause durations, and manual promotion in order to control how our application is rolled out across the stable and canary services
 
 The Argo Rollouts Canary strategy supports the K8s API directly [basic example here](https://argo-rollouts.readthedocs.io/en/stable/features/canary/#example), as well as many examples of integrations for [Traffic Management](https://argo-rollouts.readthedocs.io/en/stable/features/traffic-management/) that allow more advanced rollout scenarios.
@@ -182,6 +182,8 @@ trafficRouting:
 
 ![canary-post-promotion](.images/canary-post-promotion.png)
 
+
+## Deploy and Configure the Initial Rollout
 First we will create the `rollouts-demo` namespace
 ```
 kubectl apply -f- <<EOF
@@ -394,7 +396,7 @@ steps:
 In the rollouts demo UI we should be able to see the steps and the respective weights pretty clearly in the shift from blue to green.
 ![rollouts-ui-canary](.images/rollouts-ui-canary.png)
 
-## Bonus:
+### Bonus:
 If you set the Rollout strategy steps as follows, the promotion will happen automatically every 5 seconds except for the second step (at 25%) which requires a manual promotion
 ```
 steps:
@@ -658,7 +660,7 @@ You can even describe a selected AnalysisRun to see more details
 kubectl describe analysisrun -n rollouts-demo rollouts-demo-5bc478cfbd-8
 ```
 
-## Failed AnalysisRun and Automatic Rollback
+### Failed AnalysisRun and Automatic Rollback
 Now let's repeat the experiment and change the image again, except this time to a known bad image tag `bad-green`
 ```
 kubectl argo rollouts set image rollouts-demo -n rollouts-demo rollouts-demo=argoproj/rollouts-demo:bad-green
@@ -675,7 +677,7 @@ rollouts-demo-789db855f9-3   Failed       93s
 In the image below you can see the successful rollout from `blue` to `orange`, as well as the rollout to `bad-green` and rollback to `orange`
 ![rollouts-ui-rollback](.images/rollouts-ui-rollback.png)
 
-## Cleanup Canary rollouts demo
+### Cleanup Canary rollouts demo
 ```
 kubectl delete serviceaccount rollouts-demo -n rollouts-demo
 kubectl delete service rollouts-demo-preview -n rollouts-demo
