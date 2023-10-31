@@ -4,7 +4,7 @@
 - K8s cluster deployed
 - Gloo Platform installed and configured on a single cluster
 - Istio deployed
-  - This guide uses a revision based install method which uses the `istio.io/rev: 1-19` namespace label
+  - This guide uses a revision based install method which uses the `istio.io/rev: 1-19` namespace label. If using the default istio injection label you can replace with `istio-injection: enabled` instead
   - This guide assumes that istiod is deployed in `istio-system` and the ingressgateway is deployed in `istio-gateways`
 - VirtualGateway configured with the name `north-south-gw` in the `istio-gateways` namespace
 
