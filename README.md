@@ -4,6 +4,9 @@
 - K8s cluster deployed
 - Gloo Platform installed and configured on a single cluster
 - Istio deployed
+  - This guide uses a revision based install method which uses the `istio.io/rev: 1-19` namespace label
+  - This guide assumes that istiod is deployed in `istio-system` and the ingressgateway is deployed in `istio-gateways`
+- VirtualGateway configured with the name `north-south-gw` in the `istio-gateways` namespace
 
 # Gloo Platform Workspace Setup
 Let's set up a simple catchall workspace for our rollouts demo
@@ -329,7 +332,7 @@ spec:
   hosts:
     - '*'
   virtualGateways:
-    - name: mgmt-north-south-gw-443
+    - name: north-south-gw
       namespace: istio-gateways
       cluster: mgmt
   http:
