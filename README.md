@@ -1,5 +1,10 @@
 # Getting Started with Gloo Platform and Argo Rollouts
 
+## Introduction
+In modern software development, the ability to deploy applications swiftly and seamlessly is an important competitive advantage. This is where Argo Rollouts truly shines. By harnessing the power of Argo Rollouts, organizations can ensure a smooth and controlled transition from one version of an application to the next, minimizing downtime and reducing the risk of disruptions. This level of precision not only enhances the end-user experience but also bolsters an organization's reliability and reputation. Furthermore, Argo Rollouts empowers teams to adopt advanced deployment strategies like canary releases and blue-green deployments, allowing for safe experimentation with new features and configurations. The result? Faster innovation cycles, higher customer satisfaction, and ultimately, a stronger market position for the organization.
+
+At Solo.io, we've integrated Argo Rollouts' traffic management capabilities with Gloo Platform's advanced routing mechanisms through a supported plugin. This integration is a testament to our dedication to empowering organizations with the tools they need to succeed in the ever-evolving landscape of Kubernetes deployments. This blog provides a comprehensive guide on how to install, use, and implement various patterns for progressive delivery using Argo Rollouts and Gloo Platform.
+
 ## Prerequisites
 - K8s cluster deployed
 - Gloo Platform installed and configured on a single cluster
@@ -98,7 +103,7 @@ NAME                             READY   STATUS    RESTARTS   AGE
 argo-rollouts-758c6d9456-7phwn   1/1     Running   0          4m41s
 ```
 
-You can see in the logs of the argo-rollouts pod that the `solo-io/glooedge` plugin was loaded in the output below
+You can see in the logs of the argo-rollouts pod that the `solo-io/glooplatform` plugin was loaded in the output below
 ```
 % kubectl logs -n argo-rollouts deploy/argo-rollouts
 time="2023-10-31T17:41:08Z" level=info msg="Argo Rollouts starting" version=v1.2.0+423be7b
@@ -684,4 +689,4 @@ kubectl delete workspace all -n gloo-mesh
 ```
 
 ## Conclusion
-This tutorial demonstrates the ease of integrating progressive delivery workflows to your application deployments using Argo Rollouts and Gloo Platform but only scratches the surface! Many standard options exist in the Argo Rollouts Documentation such as [BlueGreen Deployment Strategy](https://argo-rollouts.readthedocs.io/en/stable/features/bluegreen/) and [Canary Strategy](https://argo-rollouts.readthedocs.io/en/stable/features/canary/). Take a look at other strategies and routing examples in the plugin [github repo examples](https://github.com/argoproj-labs/rollouts-plugin-trafficrouter-glooedge/tree/main/examples) as well as the [Analysis & Progressive Delivery](https://argo-rollouts.readthedocs.io/en/stable/features/analysis/) documentation for more ways to get started!
+This tutorial demonstrates the ease of integrating progressive delivery workflows to your application deployments using Argo Rollouts and Gloo Platform but only scratches the surface! Many standard options exist in the Argo Rollouts Documentation such as [BlueGreen Deployment Strategy](https://argo-rollouts.readthedocs.io/en/stable/features/bluegreen/) and [Canary Strategy](https://argo-rollouts.readthedocs.io/en/stable/features/canary/). Take a look at other strategies and routing examples in the plugin [github repo examples](https://github.com/argoproj-labs/rollouts-plugin-trafficrouter-glooplatform/tree/main/examples) as well as the [Analysis & Progressive Delivery](https://argo-rollouts.readthedocs.io/en/stable/features/analysis/) documentation for more ways to get started!
