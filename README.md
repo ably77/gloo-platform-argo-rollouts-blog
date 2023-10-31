@@ -373,6 +373,7 @@ You should now be able to access the application in the browser using the follow
 echo "access the rollouts demo UI at https://$(kubectl -n istio-gateways get service istio-ingressgateway-1-19 -o jsonpath='{.status.loadBalancer.ingress[0].*}')"
 ```
 
+### Initiating a new Rollout
 Now lets promote the image from the `blue` image tag to the `green` image tag and watch the traffic pattern in the UI
 ```
 kubectl argo rollouts set image rollouts-demo -n rollouts-demo rollouts-demo=argoproj/rollouts-demo:green
