@@ -40,17 +40,17 @@ EOF
 ## Install the argo-rollouts controller
 Install the kubectl argo-rollouts plugin as described [here](https://argoproj.github.io/argo-rollouts/installation/##kubectl-plugin-installation)
 
-Instructions for brew
+If you're using brew, you can install it using:
 ```
 brew install argoproj/tap/kubectl-argo-rollouts
 ```
 
-Create argo-rollouts namespace
+Create the argo-rollouts namespace:
 ```
 kubectl create namespace argo-rollouts
 ```
 
-Save the following as `kustomization.yaml`
+Create a kustomization file named kustomization.yaml with the following content:
 ```
 cat > kustomization.yaml << EOF
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -91,12 +91,12 @@ patchesJson6902:
 EOF
 ```
 
-Now apply the kustomize using `kubectl apply -k` to deploy the argo-rollouts controller into the `argo-rollouts` namespace
+Apply the kustomization using:
 ```
 kubectl apply -k .
 ```
 
-Check to see if your argo-rollouts controller has been deployed:
+Verify if the argo-rollouts controller has been deployed:
 ```
 % kubectl get pods -n argo-rollouts
 NAME                             READY   STATUS    RESTARTS   AGE
@@ -139,6 +139,8 @@ time="2023-10-31T17:41:11Z" level=info msg="Istio detected"
 time="2023-10-31T17:41:11Z" level=info msg="Starting istio workers"
 time="2023-10-31T17:41:11Z" level=info msg="Istio workers (10) started"
 ```
+
+You can also check the logs of the argo-rollouts pod to ensure that the `solo-io/glooplatform` plugin was loaded.
 
 ## Review Canary Rollout Strategy
 A Canary rollout is a deployment strategy where the operator releases a new version of their application to a small percentage of the production traffic. We can use weights, pause durations, and manual promotion in order to control how our application is rolled out across the stable and canary services
