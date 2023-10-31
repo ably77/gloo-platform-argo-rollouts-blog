@@ -405,6 +405,13 @@ steps:
 - pause: {duration: 5}
 ```
 
+When doing so, you can also run a `-w` watch command on the following resources to visualize the config changes being managed by the Rollouts controller which are described in the diagrams at the top of this section
+```
+kubectl get svc rollouts-demo-active -n rollouts-demo -oyaml -w
+kubectl get svc rollouts-demo-preview -n rollouts-demo -oyaml -w
+kubectl get routetable rollouts-demo-routetable -n rollouts-demo -oyaml -w
+```
+
 Run the following command to promote the rollout:
 ```
 kubectl argo rollouts promote rollouts-demo -n rollouts-demo
