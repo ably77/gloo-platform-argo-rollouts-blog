@@ -540,6 +540,20 @@ kubectl argo rollouts get rollout rollouts-demo -n rollouts-demo
 
 ## Integrating with Istio Observability
 With Istio integration, we can experiment with much more advanced `AnalysisTemplate` options such as leveraging Prometheus queries and Istio metrics to set a success condition for promotion
+
+If you havent already, install a basic Prometheus in the istio-system namespace using the istio sample addons
+```
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/prometheus.yaml --context gloo
+```
+
+Check to see that Prometheus has been installed
+```
+% kubectl get pods -n istio-system --context gloo
+NAME                          READY   STATUS    RESTARTS   AGE
+istiod-1-19-6456f9d9b-pwbf5   1/1     Running   0          9m56s
+prometheus-7545dd48db-w2vwg   2/2     Running   0          36s
+```
+
 ```
 kubectl apply -f- <<EOF
 apiVersion: argoproj.io/v1alpha1
