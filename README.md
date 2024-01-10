@@ -554,6 +554,7 @@ istiod-1-19-6456f9d9b-pwbf5   1/1     Running   0          9m56s
 prometheus-7545dd48db-w2vwg   2/2     Running   0          36s
 ```
 
+Next we will configure an AnalysisTemplate called istio-success-rate which defines the address of our Prometheus deployment, query, and success condition
 ```
 kubectl apply -f- <<EOF
 apiVersion: argoproj.io/v1alpha1
